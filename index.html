@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nigeria Digital Banking CX Benchmark | SentricityCX</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #F26522;
+    --orange-dark: #d4521a;
+    --orange-light: #fdf0e8;
+    --dark: #1a1a2e;
+    --dark2: #16213e;
+    --ink: #222222;
+    --ink-soft: #555555;
+    --ink-muted: #999999;
+    --white: #ffffff;
+    --off-white: #f8f8f6;
+    --border: #e8e4de;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 36px; height: 36px;
+    background: var(--orange);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-mark svg { width: 20px; height: 20px; }
+  .logo-text {
+    display: flex; flex-direction: column; line-height: 1.1;
+  }
+  .logo-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .logo-sub {
+    font-size: 0.62rem;
+    font-weight: 400;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-cta {
+    background: var(--orange);
+    color: var(--white);
+    border: none;
+    padding: 0.65rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--orange-dark); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex; align-items: center;
+    padding: 8rem 2.5rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 70% 50%, rgba(242,101,34,0.12) 0%, transparent 60%),
+      radial-gradient(circle at 20% 80%, rgba(242,101,34,0.06) 0%, transparent 40%);
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-inner {
+    max-width: 1140px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(242,101,34,0.15);
+    border: 1px solid rgba(242,101,34,0.3);
+    color: var(--orange);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+  }
+  .hero-eyebrow::before { content: '◆'; font-size: 0.5rem; }
+  h1 {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  h1 span { color: var(--orange); }
+  .hero-sub {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.85;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    max-width: 520px;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    padding: 0.95rem 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.2s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    padding: 0.95rem 2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+
+  /* HERO CARD */
+  .hero-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 2.5rem;
+    position: relative;
+    backdrop-filter: blur(10px);
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--orange);
+    border-radius: 6px 6px 0 0;
+  }
+  .card-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 2rem;
+  }
+  .card-stats { display: flex; flex-direction: column; gap: 0; }
+  .card-stat {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .card-stat:last-child { border-bottom: none; padding-bottom: 0; }
+  .card-stat:first-child { padding-top: 0; }
+  .stat-val {
+    font-family: 'Merriweather', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-val .redact {
+    background: rgba(255,255,255,0.08);
+    border: 1px dashed rgba(242,101,34,0.4);
+    color: rgba(255,255,255,0.15);
+    border-radius: 3px;
+    padding: 0 0.4rem;
+    font-size: 1.6rem;
+    cursor: default;
+    user-select: none;
+  }
+  .stat-desc {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    font-weight: 300;
+    line-height: 1.55;
+  }
+  .stat-tag {
+    display: inline-block;
+    background: rgba(242,101,34,0.15);
+    color: var(--orange);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+  }
+  .card-unlock {
+    margin-top: 1.75rem;
+    padding: 1rem 1.25rem;
+    background: rgba(242,101,34,0.1);
+    border: 1px solid rgba(242,101,34,0.25);
+    border-radius: 4px;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .card-unlock strong { color: var(--orange); font-weight: 500; }
+
+  /* SECTIONS */
+  section { padding: 6rem 2.5rem; }
+  .container { max-width: 1140px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .eyebrow::before { content: '—'; opacity: 0.5; }
+  h2 {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+  .section-lead {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.85;
+  }
+
+  /* STRIP — stats bar */
+  .strip {
+    background: var(--orange);
+    padding: 2.5rem 2.5rem;
+  }
+  .strip-inner {
+    max-width: 1140px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .strip-item { text-align: center; }
+  .strip-num {
+    font-family: 'Merriweather', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .strip-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.75);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .strip-divider {
+    width: 1px; background: rgba(255,255,255,0.25);
+    align-self: stretch;
+  }
+
+  /* PROBLEM */
+  .problem { background: var(--off-white); }
+  .problem-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center; margin-top: 3rem;
+  }
+  .problem-left h2 { margin-bottom: 1.5rem; }
+  .problem-left p {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    font-weight: 300;
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+  .problem-right { display: flex; flex-direction: column; gap: 1.25rem; }
+  .problem-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--orange);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .p-num {
+    font-family: 'Merriweather', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--orange);
+    line-height: 1;
+    flex-shrink: 0;
+    opacity: 0.4;
+  }
+  .p-text {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .p-text strong { font-weight: 600; color: var(--ink); }
+
+  /* DIMENSIONS */
+  .dimensions { background: var(--white); }
+  .dim-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .dim-card {
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 2rem 1.5rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .dim-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--orange);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .dim-card:hover { border-color: #ddd; box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+  .dim-card:hover::after { transform: scaleX(1); }
+  .dim-icon {
+    width: 40px; height: 40px;
+    background: var(--orange-light);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.1rem;
+  }
+  .dim-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .dim-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+  .dim-desc {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* FINDINGS */
+  .findings { background: var(--dark); color: var(--white); }
+  .findings .eyebrow { color: var(--orange); }
+  .findings h2 { color: var(--white); }
+  .findings-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center; margin-top: 3rem;
+  }
+  .findings-stats { display: flex; flex-direction: column; gap: 1rem; }
+  .f-stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 5px;
+    padding: 1.5rem;
+    display: flex; gap: 1.5rem; align-items: center;
+  }
+  .f-big {
+    font-family: 'Merriweather', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--orange);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 90px;
+    text-align: center;
+  }
+  .f-text {
+    font-size: 0.83rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+  .f-text strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+  .findings-text .section-lead { color: rgba(255,255,255,0.55); max-width: 100%; }
+  .findings-text p {
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+  .findings-text h2 { margin-bottom: 1.25rem; }
+
+  /* REPORT CONTENTS */
+  .contents { background: var(--off-white); }
+  .contents-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    margin-top: 3rem;
+  }
+  .c-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 1.25rem 1.5rem;
+    display: flex; gap: 0.85rem; align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .c-item:hover { border-color: var(--orange); }
+  .c-check {
+    width: 20px; height: 20px; flex-shrink: 0;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 0.1rem;
+  }
+  .c-check svg { width: 10px; height: 10px; }
+  .c-text {
+    font-size: 0.87rem;
+    color: var(--ink-soft);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+  .c-text strong { color: var(--ink); font-weight: 600; }
+
+  /* PEARL SECTION */
+  .pearl-section { background: var(--white); }
+  .pearl-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+  }
+  .pearl-quote {
+    font-family: 'Merriweather', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--ink);
+    border-left: 4px solid var(--orange);
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .pearl-bio {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  .pearl-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+  }
+  .pearl-title {
+    font-size: 0.78rem;
+    color: var(--orange);
+    font-weight: 500;
+    margin-top: 0.2rem;
+  }
+  .client-logos {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem;
+  }
+  .client-tag {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+  }
+  .testimonial {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 2rem;
+  }
+  .test-text {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    font-weight: 300;
+    line-height: 1.8;
+    font-style: italic;
+    margin-bottom: 1.25rem;
+  }
+  .test-author { font-size: 0.8rem; font-weight: 600; color: var(--ink); }
+  .test-role { font-size: 0.75rem; color: var(--ink-muted); font-weight: 300; }
+
+  /* FORM */
+  .form-section { background: var(--dark2); }
+  .form-section .eyebrow { color: var(--orange); }
+  .form-section h2 { color: var(--white); }
+  .form-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: start; margin-top: 3rem;
+  }
+  .form-pitch p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+  .form-promise {
+    background: rgba(242,101,34,0.1);
+    border: 1px solid rgba(242,101,34,0.25);
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    line-height: 1.6;
+    display: flex; gap: 0.75rem; align-items: flex-start;
+  }
+  .form-promise::before { content: '✦'; color: var(--orange); flex-shrink: 0; margin-top: 0.1rem; }
+  .request-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+  .form-group input,
+  .form-group select {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 3px;
+    padding: 0.85rem 1rem;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 300;
+    transition: border-color 0.2s;
+    outline: none;
+    width: 100%;
+    -webkit-appearance: none;
+  }
+  .form-group input::placeholder { color: rgba(255,255,255,0.2); }
+  .form-group input:focus,
+  .form-group select:focus { border-color: var(--orange); }
+  .form-group select option { background: #16213e; color: var(--white); }
+  .submit-btn {
+    background: var(--orange);
+    color: var(--white);
+    border: none;
+    padding: 1.1rem 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+  .submit-btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
+  .form-note {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+    font-weight: 300;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0d0d1a;
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .footer-logo-mark {
+    width: 28px; height: 28px;
+    background: var(--orange);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .footer-logo-mark svg { width: 14px; height: 14px; }
+  .footer-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
+  }
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.2);
+    font-weight: 300;
+  }
+  .footer-links {
+    display: flex; gap: 1.5rem;
+  }
+  .footer-links a {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--orange); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * { animation: fadeUp 0.65s ease both; }
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.22s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.34s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.46s; }
+  .hero-card { animation: fadeUp 0.65s ease 0.38s both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .hero-inner, .problem-grid, .findings-inner, .form-inner, .pearl-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .strip-inner { grid-template-columns: 1fr; }
+    .strip-divider { display: none; }
+    .dim-grid { grid-template-columns: 1fr 1fr; }
+    .contents-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    section { padding: 4rem 1.5rem; }
+    nav { padding: 1rem 1.5rem; }
+  }
+  @media (max-width: 580px) {
+    .dim-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://sentricitycx.com" class="nav-logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="10" r="7" stroke="white" stroke-width="2"/>
+        <circle cx="10" cy="10" r="3" fill="white"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">SentricityCX</span>
+      <span class="logo-sub">Customer · Culture · Growth</span>
+    </div>
+  </a>
+  <a href="#request" class="nav-cta">Request the report</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Nigeria Digital Banking Benchmark 2025</div>
+      <h1>Is your bank <span>winning</span> or losing on digital CX?</h1>
+      <p class="hero-sub">We benchmarked leading Nigerian banks on digital customer experience — scoring the journeys that matter most to your customers. The results reveal a market with significant gaps, even among top performers.</p>
+      <div class="hero-btns">
+        <a href="#request" class="btn-primary">Request the free report</a>
+        <a href="#findings" class="btn-secondary">See the findings</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="card-label">Benchmark snapshot — Nigeria 2025</div>
+      <div class="card-stats">
+        <div class="card-stat">
+          <div class="stat-tag">Overall CX scores</div>
+          <div class="stat-val"><span class="redact">{{low}} — {{high}}</span></div>
+          <div class="stat-desc">Range across leading Nigerian banks — request the report to see the full ranking</div>
+        </div>
+        <div class="card-stat">
+          <div class="stat-tag">Ease of use gap</div>
+          <div class="stat-val"><span class="redact">{{gap}}+ pts</span></div>
+          <div class="stat-desc">Difference between best and worst performer on ease of use alone</div>
+        </div>
+        <div class="card-stat">
+          <div class="stat-tag">Weakest dimension</div>
+          <div class="stat-val" style="font-size:1.1rem; font-family:'Montserrat',sans-serif; font-weight:600; color:rgba(255,255,255,0.7); margin-bottom:0.4rem;">Emotional impact</div>
+          <div class="stat-desc">The most underinvested dimension across the Nigerian banking market</div>
+        </div>
+      </div>
+      <div class="card-unlock">Request the report to <strong>see where your bank sits</strong> in the full ranking</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item">
+      <div class="strip-num">4</div>
+      <div class="strip-label">CX dimensions measured across every bank</div>
+    </div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">
+      <div class="strip-num">15 min</div>
+      <div class="strip-label">All you need to read the full report</div>
+    </div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">
+      <div class="strip-num">Free</div>
+      <div class="strip-label">No commitment, no presentation, just the report</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-left">
+        <div class="eyebrow">The challenge</div>
+        <h2>CX gaps are invisible — until they cost you</h2>
+        <p>Nigeria's digital banking space is one of the most dynamic on the continent. Customer expectations are rising faster than most banks can adapt — and competition has never been more intense.</p>
+        <p>In fast-moving markets, CX gaps tend to widen quietly. The cost shows up in churn, complaints and falling conversion rates before leadership teams see it coming.</p>
+        <p>An external benchmark gives you a clear, objective view of where your bank stands — and where the real opportunities lie.</p>
+      </div>
+      <div class="problem-right">
+        <div class="problem-card">
+          <div class="p-num">01</div>
+          <div class="p-text">It is very difficult to see your own CX clearly from the inside. <strong>You need an external mirror.</strong></div>
+        </div>
+        <div class="problem-card">
+          <div class="p-num">02</div>
+          <div class="p-text">The margin between good and excellent is precisely <strong>where customers make their decisions</strong> — and where avoidable churn accumulates.</div>
+        </div>
+        <div class="problem-card">
+          <div class="p-num">03</div>
+          <div class="p-text">Even the strongest performers in the benchmark have <strong>clear, actionable gaps</strong> — particularly around emotional impact and trust signals.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIMENSIONS -->
+<section class="dimensions">
+  <div class="container">
+    <div class="eyebrow">What we measured</div>
+    <h2>Four dimensions that drive customer loyalty</h2>
+    <p class="section-lead">Every bank was scored consistently across the four areas proven to have the greatest impact on customer satisfaction, retention and growth.</p>
+    <div class="dim-grid">
+      <div class="dim-card">
+        <div class="dim-icon">⚡</div>
+        <div class="dim-num">01</div>
+        <div class="dim-title">Ease of use</div>
+        <div class="dim-desc">How simple and efficient it is to complete key tasks — from onboarding to everyday transactions.</div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-icon">💬</div>
+        <div class="dim-num">02</div>
+        <div class="dim-title">Clarity</div>
+        <div class="dim-desc">How clear the messaging, value proposition and next steps are at every stage of the digital journey.</div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-icon">❤️</div>
+        <div class="dim-num">03</div>
+        <div class="dim-title">Emotional impact</div>
+        <div class="dim-desc">Trust, confidence and reassurance — the most underinvested dimension in the Nigerian banking market.</div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-icon">⭐</div>
+        <div class="dim-num">04</div>
+        <div class="dim-title">External reputation</div>
+        <div class="dim-desc">Reviews, ratings and social proof — how your bank appears to customers before they even open an account.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINDINGS -->
+<section class="findings" id="findings">
+  <div class="container">
+    <div class="findings-inner">
+      <div class="findings-stats">
+        <div class="eyebrow">What we found</div>
+        <h2 style="color:var(--white); margin-bottom: 1.5rem;">The scale of variation is striking</h2>
+        <div class="f-stat">
+          <div class="f-big">{{low}}<br>–<br>{{high}}</div>
+          <div class="f-text"><strong>Overall CX scores</strong> across leading Nigerian banks — a range that shows how differently customers experience digital banking today.</div>
+        </div>
+        <div class="f-stat">
+          <div class="f-big">{{gap}}+</div>
+          <div class="f-text"><strong>Point gap in ease of use</strong> between the best and worst performers — directly impacting conversion and daily active use.</div>
+        </div>
+        <div class="f-stat">
+          <div class="f-big" style="font-size:0.9rem; font-weight:600; color:var(--orange); min-width:90px; text-align:center; line-height:1.4;">Emotional<br>impact</div>
+          <div class="f-text"><strong>Weakest dimension</strong> for most players — and the one most directly linked to trust, retention and word-of-mouth recommendation.</div>
+        </div>
+      </div>
+      <div class="findings-text">
+        <h2>Even the strongest performers have clear gaps</h2>
+        <p>What stood out in our analysis was not just the underperformers — it was the fact that even the highest-scoring banks showed significant weaknesses in specific dimensions.</p>
+        <p>The full report shows exactly where each bank sits, what the top performers are doing differently, and where the clearest opportunities for improvement lie — benchmarked against global best practice.</p>
+        <a href="#request" class="btn-primary" style="display:inline-block; margin-top:1rem;">Request the full report</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENTS -->
+<section class="contents">
+  <div class="container">
+    <div class="eyebrow">What is in the report</div>
+    <h2>Short, practical and designed for senior leaders</h2>
+    <p class="section-lead">Designed to be read in 15 minutes and acted on immediately. No filler, no generic advice.</p>
+    <div class="contents-grid">
+      <div class="c-item">
+        <div class="c-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="c-text"><strong>Overall ranking</strong> of leading Nigerian bank digital journeys, scored out of 100</div>
+      </div>
+      <div class="c-item">
+        <div class="c-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="c-text"><strong>Scores across all four dimensions</strong> — ease, clarity, emotional impact and reputation</div>
+      </div>
+      <div class="c-item">
+        <div class="c-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="c-text"><strong>Side-by-side peer comparison</strong> so you can see exactly where your bank stands relative to direct competitors</div>
+      </div>
+      <div class="c-item">
+        <div class="c-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="c-text"><strong>What top performers are doing differently</strong> — the specific practices driving stronger scores</div>
+      </div>
+      <div class="c-item">
+        <div class="c-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="c-text"><strong>Global best practices</strong> proven to close CX gaps in complex, regulated banking environments</div>
+      </div>
+      <div class="c-item">
+        <div class="c-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="c-text"><strong>2–3 quick wins</strong> identified for each bank that can be acted on without large investment</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PEARL -->
+<section class="pearl-section">
+  <div class="container">
+    <div class="pearl-inner">
+      <div>
+        <div class="eyebrow">About the author</div>
+        <div class="pearl-quote">"Pearl brings a unique perspective. Her ability to bring to life the experience of the customer when designing digital solutions is remarkable."</div>
+        <div class="pearl-name">Pearl</div>
+        <div class="pearl-title">CX Consultant, SentricityCX</div>
+        <div class="client-logos">
+          <span class="client-tag">Temenos</span>
+          <span class="client-tag">Banking</span>
+          <span class="client-tag">Digital CX</span>
+          <span class="client-tag">Africa</span>
+          <span class="client-tag">Financial Services</span>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="test-text">"Working with Pearl was a game-changer for our customers. Her attention to detail, responsiveness, and proactive solutions made the entire process seamless. Tier 1 banks and financial customers saw significant improvements in efficiency and customer satisfaction."</div>
+        <div class="test-author">Chris Guerin</div>
+        <div class="test-role">Head of Customer Success, Temenos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="request">
+  <div class="container">
+    <div class="eyebrow">Request the report</div>
+    <h2>See how your bank compares</h2>
+    <div class="form-inner">
+      <div class="form-pitch">
+        <p>The report is short, practical and designed for senior leaders. We will send it directly to your inbox — no presentation, no sales call, no commitment of any kind.</p>
+        <p>If after reading it you would like to discuss what the findings mean specifically for your bank, Pearl is happy to arrange a 20–30 minute conversation at your convenience.</p>
+        <div class="form-promise">No presentation. No commitment. Just the report, sent directly to your inbox within 24 hours.</div>
+      </div>
+      <form class="request-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First name</label>
+            <input type="text" placeholder="Emeka" required>
+          </div>
+          <div class="form-group">
+            <label>Last name</label>
+            <input type="text" placeholder="Okonkwo" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Bank</label>
+          <input type="text" placeholder="Your bank name" required>
+        </div>
+        <div class="form-group">
+          <label>Work email</label>
+          <input type="email" placeholder="you@yourbank.com" required>
+        </div>
+        <div class="form-group">
+          <label>Your role</label>
+          <select>
+            <option value="" disabled selected>Select your role</option>
+            <option>Chief Experience Officer</option>
+            <option>Chief Digital Officer</option>
+            <option>Chief Customer Officer</option>
+            <option>Head of Digital</option>
+            <option>Head of Retail Banking</option>
+            <option>Other senior leader</option>
+          </select>
+        </div>
+        <button type="submit" class="submit-btn">Send me the report →</button>
+        <p class="form-note">Your details will only be used to send you the report and will not be shared with any third party.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-mark">
+      <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="white" stroke-width="2"/><circle cx="10" cy="10" r="3" fill="white"/></svg>
+    </div>
+    <span class="footer-name">SentricityCX</span>
+  </div>
+  <span class="footer-copy">© 2025 Sentricity Ltd. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="https://sentricitycx.com">Website</a>
+    <a href="https://sentricitycx.com/privacy_policy">Privacy</a>
+    <a href="mailto:hello@sentricitycx.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.submit-btn');
+  btn.textContent = 'Thank you — report on its way ✦';
+  btn.style.background = '#2a6a4a';
+  btn.disabled = true;
+}
+</script>
+
+</body>
+</html>
